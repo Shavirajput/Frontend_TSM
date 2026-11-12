@@ -1,0 +1,294 @@
+.field-guide {
+    --rail-w: 82px;
+    --paper: 10 14 23;
+    --paper-2: 17 24 39;
+    --ink: 241 245 249;
+    --nexus: 56 189 248;
+    --navy: 191 219 254;
+    --leak: 251 113 133;
+    --growth: 52 211 153;
+    --rule: 226 232 240;
+    --rule-a: 0.16;
+    --rule-soft-a: 0.1;
+    --grain-a: 0.1;
+    --plate-dot: 226 232 240;
+    --plate-dot-a: 0.06;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, rgb(14 116 144 / 0.18), transparent 32%),
+        linear-gradient(180deg, #050a12 0%, #0a0e17 20%, #0a0e17 100%);
+    color: #f1f5f9;
+}
+
+.field-guide .field-guide-rail {
+    width: 82px;
+    padding-block: calc(var(--nav-h) - 24px) 1.25rem;
+    border-color: rgb(148 163 184 / 0.14);
+    background:
+        linear-gradient(180deg, rgba(7, 12, 20, 0.92), rgba(5, 9, 15, 0.88));
+    box-shadow: 12px 0 36px -30px rgb(0 0 0 / 0.9);
+    backdrop-filter: blur(16px);
+}
+
+.field-guide .field-guide-rail-list {
+    gap: 4px;
+    padding-block: 0;
+}
+
+.field-guide .field-guide-rail-list > div:first-child {
+    left: 20px;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgb(148 163 184 / 0.32) 8%,
+        rgb(148 163 184 / 0.32) 92%,
+        transparent
+    ) !important;
+}
+
+.field-guide .field-guide-rail-list > div:nth-child(2) {
+    left: 19px;
+    width: 3px;
+    border-radius: 999px;
+    box-shadow: 0 0 18px rgb(56 189 248 / 0.55);
+    background: linear-gradient(180deg, rgb(103 232 249), rgb(59 130 246));
+}
+
+.field-guide .field-guide-rail-marker {
+    min-height: 25px;
+    padding-right: 14px;
+}
+
+.field-guide .field-guide-rail-number {
+    display: grid;
+    width: 30px;
+    height: 25px;
+    place-items: center;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: rgb(148 163 184 / 0.62);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.field-guide .field-guide-rail-marker:hover .field-guide-rail-number {
+    transform: translateX(-1px);
+    border-color: rgb(255 255 255 / 0.08);
+    background: rgb(255 255 255 / 0.055);
+    color: #e2e8f0;
+}
+
+.field-guide .field-guide-rail-marker[aria-current="true"] .field-guide-rail-number {
+    border-color: rgb(56 189 248 / 0.28);
+    background: linear-gradient(135deg, rgb(56 189 248 / 0.2), rgb(59 130 246 / 0.09));
+    color: #7dd3fc;
+    box-shadow: 0 0 24px -10px rgb(56 189 248 / 0.75);
+}
+
+.field-guide .field-guide-rail-marker:focus-visible {
+    border-radius: 10px;
+    outline-offset: 1px;
+}
+
+.field-guide .field-guide-rail-marker > span:last-child {
+    left: calc(100% + 10px);
+    border-color: rgb(148 163 184 / 0.2);
+    border-radius: 9px;
+    background: rgb(15 23 42 / 0.96);
+    padding: 0.55rem 0.75rem;
+    color: #e2e8f0;
+    box-shadow: 0 14px 36px -20px rgb(0 0 0 / 0.9);
+}
+
+.field-guide .field-guide-rail-percentage {
+    border: 1px solid rgb(255 255 255 / 0.09);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.045);
+    padding: 0.35rem 0.55rem;
+    color: rgb(148 163 184 / 0.75);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+}
+
+.field-guide .broadsheet-rules > section[data-page] {
+    margin-block: 1.25rem;
+    padding: 1.5rem;
+    border: 1px solid rgb(255 255 255 / 0.09);
+    border-radius: 1.4rem;
+    background:
+        linear-gradient(180deg, rgb(15 23 42 / 0.72), rgb(8 12 20 / 0.82));
+    box-shadow: 0 18px 50px -38px rgb(2 6 23 / 0.95);
+    backdrop-filter: blur(12px);
+    transition:
+        border-color 300ms ease,
+        background-color 300ms ease,
+        transform 300ms ease,
+        box-shadow 300ms ease;
+}
+
+.field-guide .broadsheet-rules > section[data-page]:hover {
+    transform: translateY(-3px);
+    border-color: rgb(125 211 252 / 0.35);
+    background:
+        linear-gradient(180deg, rgb(15 23 42 / 0.82), rgb(8 12 20 / 0.88));
+    box-shadow: 0 28px 75px -42px rgb(0 0 0 / 1);
+}
+
+.field-guide .sheet,
+.field-guide .evidence-frame {
+    border-color: rgb(148 163 184 / 0.18);
+    border-radius: 1rem;
+    background:
+        linear-gradient(180deg, rgb(15 23 42 / 0.82), rgb(8 12 20 / 0.9));
+    backdrop-filter: blur(8px);
+    transition:
+        border-color 300ms ease,
+        background-color 300ms ease,
+        transform 300ms ease,
+        box-shadow 300ms ease;
+}
+
+.field-guide .sheet:hover,
+.field-guide .evidence-frame:hover {
+    border-color: rgb(125 211 252 / 0.35);
+    background:
+        linear-gradient(180deg, rgb(15 23 42 / 0.9), rgb(8 12 20 / 0.96));
+    transform: translateY(-2px);
+}
+
+.field-guide .broadsheet-rules > section[data-page="19"],
+.field-guide .broadsheet-rules > section[data-page="20"] {
+    --paper: 248 250 252;
+    --paper-2: 255 255 255;
+    --ink: 15 23 42;
+    --nexus: 2 132 199;
+    --navy: 30 64 175;
+    --leak: 190 24 93;
+    --growth: 5 150 105;
+    --rule: 51 65 85;
+    --rule-a: 0.2;
+    --rule-soft-a: 0.12;
+    --plate-dot: 51 65 85;
+    --plate-dot-a: 0.08;
+    border-color: rgb(148 163 184 / 0.4);
+    background:
+        linear-gradient(145deg, #eaf2f6 0%, #dce8ee 58%, #d4e2ea 100%);
+    box-shadow: 0 28px 70px -42px rgb(15 23 42 / 0.8);
+    color: #0f172a;
+}
+
+.field-guide .broadsheet-rules > section[data-page="19"]:hover,
+.field-guide .broadsheet-rules > section[data-page="20"]:hover {
+    border-color: rgb(14 165 233 / 0.45);
+    background:
+        linear-gradient(145deg, #edf5f8 0%, #e0ebf1 58%, #d8e6ed 100%);
+}
+
+.field-guide .broadsheet-rules > section[data-page="19"] .sheet,
+.field-guide .broadsheet-rules > section[data-page="19"] .evidence-frame,
+.field-guide .broadsheet-rules > section[data-page="20"] .sheet,
+.field-guide .broadsheet-rules > section[data-page="20"] .evidence-frame {
+    border-color: rgb(15 23 42 / 0.1);
+    background:
+        linear-gradient(145deg, #f3f7f9 0%, #e8f0f4 100%);
+    color: #0f172a;
+    box-shadow: 0 16px 36px -24px rgb(15 23 42 / 0.28);
+}
+
+.field-guide .broadsheet-rules > section[data-page="19"] .sheet,
+.field-guide .broadsheet-rules > section[data-page="19"] .evidence-frame {
+    background: #223849;
+    color: #f1f5f9;
+}
+
+.field-guide .broadsheet-rules > section[data-page="19"] .evidence-frame .font-display {
+    color: #f1f5f9;
+}
+
+.field-guide .broadsheet-rules > section[data-page="19"] .evidence-frame p {
+    color: rgb(241 245 249 / 0.78);
+}
+
+.field-guide .broadsheet-rules > section[data-page="19"] .sheet:hover,
+.field-guide .broadsheet-rules > section[data-page="20"] .sheet:hover,
+.field-guide .broadsheet-rules > section[data-page="20"] .evidence-frame:hover {
+    border-color: rgb(2 132 199 / 0.35);
+    background:
+        linear-gradient(145deg, #f7fafb 0%, #edf4f7 100%);
+}
+
+.field-guide .broadsheet-rules > section[data-page="19"] .sheet:hover,
+.field-guide .broadsheet-rules > section[data-page="19"] .evidence-frame:hover {
+    background: #29465b;
+}
+
+.field-guide .broadsheet-rules > section[data-page="20"] .evidence-frame .font-display {
+    color: #0f172a;
+}
+
+.field-guide .broadsheet-rules > section[data-page="20"] .evidence-frame p {
+    color: #334155;
+}
+
+.field-guide .broadsheet-rules > section[data-page="19"] .evidence-frame .text-nexus,
+.field-guide .broadsheet-rules > section[data-page="20"] .evidence-frame .text-nexus {
+    color: #0284c7;
+}
+
+.field-guide [data-testid="revenue-leak-stamp"] {
+    border-radius: 999px;
+}
+
+.field-guide a[data-testid^="apply-cta"] {
+    border-radius: 999px;
+    box-shadow: 0 12px 30px -18px rgb(56 189 248 / 0.8);
+}
+
+.field-guide a[data-testid="apply-cta-cohort"],
+.field-guide a[data-testid="apply-cta-cohort"]:hover {
+    background-color: #fff;
+    color: #0f172a;
+}
+
+@media (min-width: 640px) {
+    .field-guide .broadsheet-rules > section[data-page] {
+        padding: 2rem;
+    }
+}
+
+@media (max-height: 700px) and (min-width: 1024px) {
+    .field-guide .field-guide-rail-list {
+        gap: 1px;
+    }
+
+    .field-guide .field-guide-rail-marker {
+        min-height: 22px;
+        padding-block: 0;
+    }
+
+    .field-guide .field-guide-rail-number {
+        height: 22px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .field-guide .broadsheet-rules > section[data-page],
+    .field-guide .sheet,
+    .field-guide .evidence-frame {
+        transition: none;
+    }
+
+    .field-guide .broadsheet-rules > section[data-page]:hover,
+    .field-guide .sheet:hover,
+    .field-guide .evidence-frame:hover,
+    .field-guide .field-guide-rail-marker:hover .field-guide-rail-number {
+        transform: none;
+    }
+}

@@ -1,0 +1,137 @@
+.contact-page {
+    display: flow-root;
+    background:
+        radial-gradient(ellipse at 18% 0%, rgb(14 116 144 / 0.12), transparent 34%),
+        #080c14;
+}
+
+.contact-page .brand-dark {
+    background:
+        radial-gradient(ellipse at 82% 6%, rgb(79 70 229 / 0.1), transparent 32%),
+        linear-gradient(180deg, #080c14 0%, #0b101a 54%, #080c14 100%);
+}
+
+.contact-page .contact-hero {
+    isolation: isolate;
+    min-height: 680px;
+    background:
+        radial-gradient(ellipse at 67% 12%, rgb(91 33 182 / 0.25), transparent 36%),
+        radial-gradient(ellipse at 10% 12%, rgb(8 145 178 / 0.14), transparent 34%),
+        linear-gradient(130deg, #080c14 8%, #111225 56%, #0a1118 100%);
+}
+
+.contact-page .contact-hero h1 {
+    max-width: 13ch;
+    text-wrap: balance;
+}
+
+.contact-page .contact-form {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgb(226 232 240 / 0.86);
+    border-radius: 18px;
+    background:
+        radial-gradient(ellipse at 100% 0%, rgb(224 242 254 / 0.5), transparent 44%),
+        linear-gradient(145deg, #fff 0%, #f8fafc 58%, #eef4fa 100%);
+    box-shadow:
+        0 34px 86px -52px rgb(0 0 0 / 0.9),
+        0 0 54px -40px rgb(34 211 238 / 0.3);
+}
+
+.contact-page .contact-form::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        rgb(var(--brand-cyan)),
+        rgb(var(--brand-blue)) 38%,
+        rgb(var(--brand-violet)) 72%,
+        rgb(var(--brand-magenta))
+    );
+    content: "";
+}
+
+.contact-page .contact-form h2,
+.contact-page .contact-form .text-white {
+    color: #0f172a !important;
+}
+
+.contact-page .contact-form [class*="text-white/"] {
+    color: #64748b !important;
+}
+
+.contact-page .contact-form label {
+    color: #334155;
+}
+
+.contact-page .contact-form input[data-testid^="contact-field-"],
+.contact-page .contact-form textarea[data-testid="contact-field-message"] {
+    min-height: 48px;
+    border-color: #cbd5e1;
+    border-radius: 9px;
+    background: rgb(255 255 255 / 0.88);
+    color: #0f172a;
+    box-shadow: inset 0 1px 2px rgb(15 23 42 / 0.035);
+    transition:
+        border-color 200ms ease,
+        background-color 200ms ease,
+        box-shadow 200ms ease;
+}
+
+.contact-page .contact-form textarea[data-testid="contact-field-message"] {
+    min-height: 132px;
+}
+
+.contact-page .contact-form input[data-testid^="contact-field-"]::placeholder,
+.contact-page .contact-form textarea[data-testid="contact-field-message"]::placeholder {
+    color: #94a3b8;
+}
+
+.contact-page .contact-form input[data-testid^="contact-field-"]:focus,
+.contact-page .contact-form textarea[data-testid="contact-field-message"]:focus {
+    border-color: rgb(var(--brand-sky) / 0.72);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgb(var(--brand-sky) / 0.18);
+}
+
+.contact-page .contact-form .font-mono.text-\[9px\] {
+    color: #64748b;
+}
+
+.contact-page .contact-success .font-mono.text-white\/40,
+.contact-page .contact-success .font-mono.text-white\/70 {
+    color: #64748b;
+}
+
+.contact-page .contact-success [data-testid="contact-reference"] {
+    color: #0369a1;
+}
+
+.contact-page .contact-form .brand-btn,
+.contact-page .contact-form [data-testid="contact-submit"] {
+    min-height: 48px;
+    border-radius: 0.55rem;
+}
+
+.contact-page .contact-success {
+    min-height: 100%;
+}
+
+@media (min-width: 1024px) {
+    .contact-page .contact-hero > .relative.mx-auto {
+        padding-top: 6rem;
+        padding-bottom: 7rem;
+    }
+
+    .contact-page .contact-hero .grid {
+        align-items: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-page .contact-form input[data-testid^="contact-field-"],
+    .contact-page .contact-form textarea[data-testid="contact-field-message"] {
+        transition: none;
+    }
+}

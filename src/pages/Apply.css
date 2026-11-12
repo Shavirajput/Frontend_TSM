@@ -1,0 +1,198 @@
+.apply-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgb(56 189 248 / 0.07), transparent 34%),
+        #080c14;
+}
+
+.apply-page .apply-content {
+    position: relative;
+}
+
+.apply-page .apply-heading h1 {
+    text-wrap: balance;
+}
+
+.apply-page .apply-folio {
+    display: grid;
+    width: 3.25rem;
+    height: 3.25rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid rgb(148 163 184 / 0.2);
+    border-radius: 0.75rem;
+    background: rgb(15 23 42 / 0.48);
+    color: rgb(148 163 184 / 0.55);
+}
+
+.apply-page .apply-progress [role="progressbar"] {
+    height: 0.375rem;
+    overflow: hidden;
+    background: rgb(148 163 184 / 0.16);
+}
+
+.apply-page .apply-progress [data-testid="application-progress"] {
+    background: linear-gradient(90deg, #38bdf8, #818cf8);
+}
+
+.apply-page .application-card {
+    border: 1px solid rgb(148 163 184 / 0.2);
+    border-radius: 1rem;
+    background: linear-gradient(155deg, rgb(17 24 39 / 0.96), rgb(10 15 25 / 0.98));
+    background-image: none;
+    box-shadow: 0 28px 70px -48px rgb(0 0 0 / 0.9);
+}
+
+.apply-page .application-card:hover {
+    box-shadow: 0 28px 70px -48px rgb(0 0 0 / 0.9);
+}
+
+.apply-page .application-card > .perf-top {
+    height: 2px;
+    background: linear-gradient(90deg, rgb(56 189 248 / 0.85), rgb(129 140 248 / 0.65), transparent 76%);
+}
+
+.apply-page .apply-section-heading {
+    border-color: rgb(148 163 184 / 0.2);
+}
+
+.apply-page .apply-section-number {
+    display: grid;
+    width: 1.75rem;
+    height: 1.75rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid rgb(56 189 248 / 0.25);
+    border-radius: 0.5rem;
+    color: #7dd3fc;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.apply-page .apply-field {
+    border-color: rgb(148 163 184 / 0.13) !important;
+}
+
+.apply-page .apply-field label {
+    cursor: text;
+}
+
+.apply-page .apply-field input,
+.apply-page .apply-field textarea {
+    min-height: 3rem;
+    border: 1px solid rgb(148 163 184 / 0.24);
+    border-radius: 0.625rem;
+    background: rgb(8 12 20 / 0.68);
+    color: #f8fafc;
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.12);
+    transition:
+        border-color 180ms ease,
+        background-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.apply-page .apply-field textarea {
+    min-height: 6rem;
+}
+
+.apply-page .apply-field input::placeholder,
+.apply-page .apply-field textarea::placeholder {
+    color: rgb(148 163 184 / 0.62);
+}
+
+.apply-page .apply-field input:hover,
+.apply-page .apply-field textarea:hover {
+    border-color: rgb(148 163 184 / 0.42);
+}
+
+.apply-page .apply-field input:focus,
+.apply-page .apply-field textarea:focus {
+    border-color: rgb(56 189 248 / 0.72);
+    background: rgb(8 12 20 / 0.9);
+    box-shadow: 0 0 0 3px rgb(56 189 248 / 0.15);
+}
+
+.apply-page .apply-field input[aria-invalid="true"],
+.apply-page .apply-field textarea[aria-invalid="true"] {
+    border-color: rgb(var(--leak));
+}
+
+.apply-page .apply-agreement {
+    border-color: rgb(148 163 184 / 0.13);
+    border-radius: 0.5rem;
+}
+
+.apply-page .apply-agreement:hover {
+    background: rgb(148 163 184 / 0.045);
+}
+
+.apply-page .apply-agreement input {
+    border-radius: 0.25rem;
+    accent-color: #38bdf8;
+}
+
+.apply-page .apply-actions {
+    border-color: rgb(148 163 184 / 0.2);
+}
+
+.apply-page .apply-actions button,
+.apply-page .apply-primary-button {
+    min-height: 3rem;
+    border-radius: 0.625rem;
+}
+
+.apply-page .apply-actions button[data-testid="application-next-button"],
+.apply-page .apply-actions button[data-testid="application-submit-button"],
+.apply-page .apply-primary-button {
+    background: #38bdf8;
+    color: #08111d;
+}
+
+.apply-page .apply-actions button[data-testid="application-next-button"]:hover,
+.apply-page .apply-actions button[data-testid="application-submit-button"]:hover,
+.apply-page .apply-primary-button:hover {
+    background: #7dd3fc;
+    color: #08111d;
+}
+
+.apply-page .apply-actions button[data-testid="application-back-button"] {
+    border-color: rgb(148 163 184 / 0.28);
+    border-radius: 0.625rem;
+    color: rgb(226 232 240 / 0.78);
+}
+
+.apply-page .apply-actions button[data-testid="application-back-button"]:hover {
+    border-color: rgb(125 211 252 / 0.55);
+    color: #7dd3fc;
+}
+
+.apply-page .apply-footnote {
+    max-width: 78ch;
+    border-left: 2px solid rgb(56 189 248 / 0.44);
+    padding-left: 1rem;
+    line-height: 1.8;
+}
+
+@media (max-width: 639px) {
+    .apply-page .apply-heading {
+        gap: 1rem;
+    }
+
+    .apply-page .apply-folio {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 0.625rem;
+        font-size: 1.125rem;
+    }
+
+    .apply-page .apply-field-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .apply-page .apply-field input,
+    .apply-page .apply-field textarea {
+        transition: none;
+    }
+}
