@@ -262,14 +262,13 @@ function Phase({ item, index }) {
 function RollingPhaseStack({ items }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
-  const [isMobile, setIsMobile] = useState(() =>
-    window.matchMedia("(max-width: 639px)").matches
-  );
+  const [isMobile, setIsMobile] = useState(false);
   const totalCards = items.length;
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 639px)");
     const updateDevice = (event) => setIsMobile(event.matches);
+    setIsMobile(mediaQuery.matches);
     mediaQuery.addEventListener("change", updateDevice);
     return () => mediaQuery.removeEventListener("change", updateDevice);
   }, []);

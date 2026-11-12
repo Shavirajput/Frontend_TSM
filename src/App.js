@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
+import RouteMetadata from "@/components/RouteMetadata";
 import Home from "@/pages/Home";
 import Method from "@/pages/Method";
 import Cohort from "@/pages/Cohort";
@@ -54,9 +55,10 @@ function BackToTop() {
   );
 }
 
-export default function App() {
+export function AppRoutes() {
   return (
-    <BrowserRouter>
+    <>
+      <RouteMetadata />
       <ScrollToTop />
       <div className="paper-grain" aria-hidden="true" />
       <div className="guide-shell">
@@ -68,11 +70,20 @@ export default function App() {
           <Route path="/guide" element={<FieldGuide />} />
           <Route path="/apply" element={<Apply />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
       <BackToTop />
       <Toaster position="bottom-right" theme="dark" />
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

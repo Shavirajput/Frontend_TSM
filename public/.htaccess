@@ -1,7 +1,25 @@
 Options -MultiViews
 RewriteEngine On
-RewriteBase /
-RewriteRule ^index\.html$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\.tsmnexus\.in$ [NC]
+RewriteRule ^ https://tsmnexus.in%{REQUEST_URI} [R=301,L,NE]
+
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{THE_REQUEST} \s/+(.+?)/+\s [NC]
+RewriteCond %{REQUEST_FILENAME}/index.html -f
+RewriteRule ^(.+?)/+$ https://tsmnexus.in/$1 [R=301,L,NE]
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_FILENAME}/index.html -f
+RewriteRule ^(.+?)/?$ $1/index.html [L]
+
+<IfModule mod_setenvif.c>
+  SetEnvIf Request_URI "^/admin(?:/|$)" noindex_admin
+</IfModule>
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow" env=noindex_admin
+</IfModule>

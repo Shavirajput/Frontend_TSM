@@ -54,15 +54,6 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  to="/admin"
-                  data-testid="footer-admin-link"
-                  className="font-mono text-[11px] tracking-[0.12em] uppercase text-white/30 hover:text-white transition-colors"
-                >
-                  Admin
-                </Link>
-              </li>
             </ul>
           </div>
 

@@ -10,12 +10,12 @@ describe("public robots.txt", () => {
 
   test("contains valid crawler directives rather than an application document", () => {
     expect(contents).toMatch(/^User-agent: \*$/m);
-    expect(contents).toMatch(/^Disallow:\s*$/m);
+    expect(contents).toMatch(/^Allow: \/$/m);
+    expect(contents).toMatch(/^Sitemap: https:\/\/tsmnexus\.in\/sitemap\.xml$/m);
     expect(contents).not.toMatch(/<html|<!doctype/i);
   });
 
-  test("does not invent a sitemap URL or expose application paths", () => {
-    expect(contents).not.toMatch(/^Sitemap:/im);
-    expect(contents).not.toMatch(/^Disallow: \/(?:admin|api)(?:\/|$)/im);
+  test("leaves noindex pages crawlable so crawlers can see their directives", () => {
+    expect(contents).not.toMatch(/^Disallow: \/admin(?:\/|$)/im);
   });
 });

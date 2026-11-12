@@ -1015,13 +1015,6 @@ export default function FieldGuide() {
                 >
                   Apply
                 </Link>
-                <Link
-                  to="/admin"
-                  data-testid="footer-admin-link"
-                  className="font-mono text-[9.5px] tracking-[0.2em] uppercase text-ink/35 hover:text-nexus transition-colors"
-                >
-                  Admin
-                </Link>
               </div>
             </div>
           </footer>
