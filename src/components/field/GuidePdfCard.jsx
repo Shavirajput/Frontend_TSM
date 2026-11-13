@@ -55,14 +55,14 @@ export function GuidePdfCard({ className, compact = false, idSuffix = "main" }) 
           11 pages &middot; A4
         </div>
       </div>
-      <h3
+      <h2
         className={cn(
           "mt-3 font-display font-semibold text-ink leading-snug",
           compact ? "text-[1.2rem]" : "text-[1.45rem] sm:text-[1.7rem]"
         )}
       >
         Take the Field Guide with you.
-      </h3>
+      </h2>
       {!compact && (
         <p className="mt-2 text-[15px] leading-relaxed text-ink/65 max-w-[52ch]">
           The complete 13-layer / 144-parameter framework as a branded PDF &mdash; ready for your
@@ -71,7 +71,12 @@ export function GuidePdfCard({ className, compact = false, idSuffix = "main" }) 
       )}
 
       {done ? (
-        <div className="mt-5" data-testid={`guide-pdf-success-${idSuffix}`}>
+        <div
+          className="mt-5"
+          data-testid={`guide-pdf-success-${idSuffix}`}
+          role="status"
+          aria-live="polite"
+        >
           <div className="flex items-center gap-2.5 font-mono text-[10.5px] font-semibold tracking-[0.18em] uppercase text-growth">
             <span aria-hidden="true">&#10003;</span> Download started
           </div>
@@ -88,36 +93,58 @@ export function GuidePdfCard({ className, compact = false, idSuffix = "main" }) 
           </p>
         </div>
       ) : (
-        <form onSubmit={submit} className="mt-5" data-testid={`guide-pdf-form-${idSuffix}`}>
+        <form
+          onSubmit={submit}
+          noValidate
+          className="mt-5"
+          data-testid={`guide-pdf-form-${idSuffix}`}
+        >
           <div className={cn("grid gap-2.5", compact ? "sm:grid-cols-[1fr,auto]" : "sm:grid-cols-[1fr,1.2fr,auto]")}>
             {!compact && (
+              <div className="min-w-0">
+                <label htmlFor={`guide-pdf-name-${idSuffix}`} className="sr-only">
+                  Your name (optional)
+                </label>
+                <input
+                  id={`guide-pdf-name-${idSuffix}`}
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  value={name}
+                  data-testid={`guide-pdf-name-${idSuffix}`}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your name (optional)"
+                  className="w-full rounded-[4px] border bg-transparent px-3.5 py-2.5 text-[14.5px] text-ink placeholder:text-ink/35 focus:outline-none focus:border-nexus"
+                  style={{ borderColor: "rgb(var(--rule) / 0.3)" }}
+                />
+              </div>
+            )}
+            <div className="min-w-0">
+              <label htmlFor={`guide-pdf-email-${idSuffix}`} className="sr-only">
+                Work email
+              </label>
               <input
-                type="text"
-                value={name}
-                data-testid={`guide-pdf-name-${idSuffix}`}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Your name (optional)"
-                className="w-full rounded-[4px] border bg-transparent px-3.5 py-2.5 text-[14.5px] text-ink placeholder:text-ink/35 focus:outline-none focus:border-nexus"
+                id={`guide-pdf-email-${idSuffix}`}
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                data-testid={`guide-pdf-email-${idSuffix}`}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (error) setError("");
+                }}
+                placeholder="you@company.com"
+                aria-invalid={!!error}
+                aria-describedby={error ? `guide-pdf-error-${idSuffix}` : undefined}
+                className={cn(
+                  "w-full rounded-[4px] border bg-transparent px-3.5 py-2.5 text-[14.5px] text-ink placeholder:text-ink/35 focus:outline-none focus:border-nexus",
+                  error && "!border-leak"
+                )}
                 style={{ borderColor: "rgb(var(--rule) / 0.3)" }}
               />
-            )}
-            <input
-              type="email"
-              required
-              value={email}
-              data-testid={`guide-pdf-email-${idSuffix}`}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                if (error) setError("");
-              }}
-              placeholder="you@company.com"
-              aria-invalid={!!error}
-              className={cn(
-                "w-full rounded-[4px] border bg-transparent px-3.5 py-2.5 text-[14.5px] text-ink placeholder:text-ink/35 focus:outline-none focus:border-nexus",
-                error && "!border-leak"
-              )}
-              style={{ borderColor: "rgb(var(--rule) / 0.3)" }}
-            />
+            </div>
             <button
               type="submit"
               disabled={busy}
@@ -132,7 +159,9 @@ export function GuidePdfCard({ className, compact = false, idSuffix = "main" }) 
           </div>
           {error && (
             <div
+              id={`guide-pdf-error-${idSuffix}`}
               data-testid={`guide-pdf-error-${idSuffix}`}
+              role="alert"
               className="mt-2 font-mono text-[9.5px] tracking-[0.12em] uppercase text-leak"
             >
               {error}

@@ -171,6 +171,8 @@ function Cover() {
             alt="A website wireframe blueprint examined under a magnifying lens on a dark forensic desk"
             label="Frontispiece · The investigation"
             testid="guide-cover-plate"
+            width={1408}
+            height={768}
             className="!mt-12 md:!mt-16 !mb-0 max-w-[52rem]"
           />
         </Reveal>
@@ -420,6 +422,8 @@ export default function FieldGuide() {
                   label="Plate 04-B · A leak in cross-section"
                   caption="Nothing looks broken. The pressure is still dropping."
                   testid="guide-leak-plate"
+                  width={1408}
+                  height={768}
                 />
               </div>
               <div className="lg:pt-6">
@@ -445,6 +449,8 @@ export default function FieldGuide() {
               label="Plate 05-A · The 13-layer diagnostic stack"
               caption="Each layer is examined on its own — then as a system."
               testid="guide-layers-plate"
+              width={1408}
+              height={768}
             />
             <div className="mt-8">
               <LayerIndex />
@@ -780,6 +786,8 @@ export default function FieldGuide() {
               label="Plate 14-A · The founding cohort"
               caption="Ten leadership teams. One shared diagnostic."
               testid="guide-cohort-plate"
+              width={1376}
+              height={768}
               className="!mb-0"
             />
           </div>

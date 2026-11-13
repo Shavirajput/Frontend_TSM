@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { LOGO_MARK, CALENDLY_URL } from "@/data/brand";
-import { openCalendly } from "@/lib/calendly";
+import { LOGO_MARK } from "@/data/brand";
+import FitCallDialog from "@/components/brand/FitCallDialog";
 import { cn } from "@/lib/utils";
 
 /* ---------------------------------------------------------------- reveal */
@@ -9,7 +9,8 @@ export function Rise({ children, className, delay = 0, as: As = "div" }) {
   const ref = useRef(null);
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    el.dataset.seen = "false";
     const io = new IntersectionObserver(
       ([e]) => {
         if (e.isIntersecting) {
@@ -25,9 +26,9 @@ export function Rise({ children, className, delay = 0, as: As = "div" }) {
   return (
     <As
       ref={ref}
-      data-seen="false"
+      data-seen="true"
       className={cn(
-        "opacity-0 translate-y-5 transition-[opacity,transform] duration-[700ms] ease-out data-[seen=true]:opacity-100 data-[seen=true]:translate-y-0",
+        "opacity-100 translate-y-5 transition-[opacity,transform] duration-[700ms] ease-out data-[seen=true]:translate-y-0",
         className
       )}
       style={{ transitionDelay: `${delay}ms` }}
@@ -84,7 +85,7 @@ export function SectionHead({ eyebrow, title, sub, center = false, className }) 
 }
 
 /* ---------------------------------------------------------------- buttons */
-export function CTA({ to, href, calendly, children, testid, variant = "primary", className }) {
+export function CTA({ to, href, fitCall, children, testid, variant = "primary", className }) {
   const base =
     "group inline-flex items-center justify-center gap-2.5 rounded-[7px] px-6 py-3.5 font-mono text-[10.5px] font-semibold tracking-[0.18em] uppercase transition-colors cursor-pointer";
   const classes = cn(
@@ -106,24 +107,15 @@ export function CTA({ to, href, calendly, children, testid, variant = "primary",
     </>
   );
 
-  /* Calendly booking — popup scheduler, falls back to a new tab */
-  if (calendly) {
-    const url = typeof calendly === "string" ? calendly : CALENDLY_URL;
+  if (fitCall) {
     return (
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-testid={testid}
-        data-calendly="true"
-        className={classes}
-        onClick={(e) => {
-          e.preventDefault();
-          openCalendly(url);
-        }}
-      >
-        {inner}
-      </a>
+      <FitCallDialog
+        trigger={
+          <button type="button" data-testid={testid} className={classes}>
+            {inner}
+          </button>
+        }
+      />
     );
   }
 
@@ -199,6 +191,8 @@ export function Logo3D({ size = 260, className }) {
         <img
           src={LOGO_MARK}
           alt="TSM Nexus"
+          width={512}
+          height={512}
           className="h-full w-full object-contain"
           style={{ transform: "scale(1.42)" }}
         />
@@ -208,7 +202,17 @@ export function Logo3D({ size = 260, className }) {
 }
 
 /* ------------------------------------------------------------ glow frame */
-export function GlowFrame({ src, alt, caption, testid, className, imgClassName }) {
+export function GlowFrame({
+  src,
+  alt,
+  caption,
+  testid,
+  className,
+  imgClassName,
+  width,
+  height,
+  loading = "lazy",
+}) {
   return (
     <figure
       data-testid={testid}
@@ -221,7 +225,10 @@ export function GlowFrame({ src, alt, caption, testid, className, imgClassName }
         <img
           src={src}
           alt={alt}
-          loading="lazy"
+          width={width}
+          height={height}
+          loading={loading}
+          decoding="async"
           className={cn("block h-auto w-full object-cover", imgClassName)}
         />
         <span

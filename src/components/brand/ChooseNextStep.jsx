@@ -16,7 +16,7 @@ const CHOICES = [
     title: "Book a Fit Call",
     description: "If you want to talk through your current bottleneck first.",
     buttonLabel: "Book a Fit Call",
-    calendly: true,
+    fitCall: true,
     variant: "ghost",
     testid: "next-step-fit-call",
   },
@@ -75,7 +75,7 @@ export default function ChooseNextStep({ eyebrow, intro, eyebrowSignal = false }
                 <div className="mt-6">
                   <CTA
                     to={choice.to}
-                    calendly={choice.calendly}
+                    fitCall={choice.fitCall}
                     variant={choice.variant}
                     testid={choice.testid}
                     className="choose-next-step-cta min-h-12 w-full"

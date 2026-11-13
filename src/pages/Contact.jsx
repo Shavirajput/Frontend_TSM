@@ -142,6 +142,7 @@ export default function Contact() {
               ) : (
                 <form
                   onSubmit={submit}
+                  noValidate
                   data-testid="contact-form"
                   className="contact-form glass rounded-[12px] p-6 sm:p-8"
                 >
@@ -161,17 +162,27 @@ export default function Contact() {
                         </label>
                         <input
                           id={`contact-${f.name}`}
+                          name={f.name}
                           data-testid={`contact-field-${f.name}`}
                           type={f.type || "text"}
+                          required={f.req}
+                          autoComplete={
+                            f.name === "name" || f.name === "email" || f.name === "company"
+                              ? { name: "name", email: "email", company: "organization" }[f.name]
+                              : undefined
+                          }
                           value={data[f.name]}
                           placeholder={f.ph}
                           onChange={(e) => set(f.name, e.target.value)}
                           className={cn(INPUT, "mt-2", errors[f.name] && "border-leak")}
                           aria-invalid={!!errors[f.name]}
+                          aria-describedby={errors[f.name] ? `contact-${f.name}-error` : undefined}
                         />
                         {errors[f.name] && (
                           <div
+                            id={`contact-${f.name}-error`}
                             data-testid={`contact-field-${f.name}-error`}
+                            role="alert"
                             className="mt-1.5 font-mono text-[9.5px] tracking-[0.12em] uppercase text-leak"
                           >
                             {errors[f.name]}
@@ -192,17 +203,22 @@ export default function Contact() {
                       </label>
                       <textarea
                         id="contact-message"
+                        name="message"
                         data-testid="contact-field-message"
                         rows={5}
+                        required
                         value={data.message}
                         placeholder="What would you like us to look at, and why now?"
                         onChange={(e) => set("message", e.target.value)}
                         className={cn(INPUT, "mt-2 resize-y", errors.message && "border-leak")}
                         aria-invalid={!!errors.message}
+                        aria-describedby={errors.message ? "contact-message-error" : undefined}
                       />
                       {errors.message && (
                         <div
+                          id="contact-message-error"
                           data-testid="contact-field-message-error"
+                          role="alert"
                           className="mt-1.5 font-mono text-[9.5px] tracking-[0.12em] uppercase text-leak"
                         >
                           {errors.message}

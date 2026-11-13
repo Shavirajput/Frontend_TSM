@@ -146,6 +146,7 @@ function Login({ onSuccess }) {
             {err && (
               <div
                 data-testid="admin-login-error"
+                role="alert"
                 className="mt-3 font-mono text-[10px] tracking-[0.12em] uppercase text-leak"
               >
                 {err}

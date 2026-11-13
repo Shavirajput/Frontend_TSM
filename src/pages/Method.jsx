@@ -41,6 +41,9 @@ export default function Method() {
                 alt="Isometric 3D infographic of thirteen stacked translucent diagnostic layers with a cyan scanning beam passing through one highlighted layer"
                 caption="The 13-layer diagnostic stack"
                 testid="method-layers-visual"
+                width={1699}
+                height={926}
+                loading="eager"
               />
             </Rise>
           </div>

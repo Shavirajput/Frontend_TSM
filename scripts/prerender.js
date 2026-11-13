@@ -44,7 +44,7 @@ const { renderToString } = require("react-dom/server");
 const { StaticRouter } = require("react-router-dom");
 const { QueryClient, QueryClientProvider } = require("@tanstack/react-query");
 const { AppRoutes } = require(path.join(sourceDirectory, "App.js"));
-const { PUBLIC_ROUTES, getPageMetadata } = require(path.join(
+const { PUBLIC_ROUTES, getPageMetadata, getStructuredData } = require(path.join(
   sourceDirectory,
   "lib",
   "seo.js",
@@ -85,6 +85,20 @@ function createHeadMetadata(metadata) {
   }
   if (metadata.image) {
     tags.push(`<meta property="og:image" content="${escapeAttribute(metadata.image)}" />`);
+    tags.push(`<meta property="og:image:alt" content="${escapeAttribute(metadata.imageAlt)}" />`);
+  }
+  if (metadata.siteName) {
+    tags.push(`<meta property="og:site_name" content="${escapeAttribute(metadata.siteName)}" />`);
+  }
+  if (metadata.twitterCard) {
+    tags.push(`<meta name="twitter:card" content="${escapeAttribute(metadata.twitterCard)}" />`);
+    tags.push(`<meta name="twitter:title" content="${escapeAttribute(metadata.title)}" />`);
+    tags.push(
+      `<meta name="twitter:description" content="${escapeAttribute(metadata.description)}" />`,
+    );
+    if (metadata.image) {
+      tags.push(`<meta name="twitter:image" content="${escapeAttribute(metadata.image)}" />`);
+    }
   }
 
   return tags.join("\n        ");
@@ -111,6 +125,7 @@ function renderDocument(template, route) {
   const markup = renderToString(app);
   const metadata = getPageMetadata(route);
   const rootMarkup = `<div id="root">${markup}</div>`;
+  const structuredData = getStructuredData(route);
 
   if (!template.includes('<div id="root"></div>')) {
     throw new Error("The build HTML template does not contain an empty root element.");
@@ -120,10 +135,21 @@ function renderDocument(template, route) {
   if (!metadataPlaceholder.test(template)) {
     throw new Error("The build HTML template is missing the route metadata marker.");
   }
+  const structuredDataPlaceholder =
+    /<meta name="route-structured-data-placeholder" content="replace-at-build"\s*\/?>/;
+  if (!structuredDataPlaceholder.test(template)) {
+    throw new Error("The build HTML template is missing the structured data marker.");
+  }
+  const structuredDataTag = structuredData
+    ? `<script id="tsm-nexus-jsonld" type="application/ld+json">${JSON.stringify(
+        structuredData,
+      ).replace(/</g, "\\u003c")}</script>`
+    : "";
 
   return template
     .replace('<div id="root"></div>', rootMarkup)
     .replace(metadataPlaceholder, createHeadMetadata(metadata))
+    .replace(structuredDataPlaceholder, structuredDataTag)
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeAttribute(metadata.title)}</title>`);
 }
 

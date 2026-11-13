@@ -5,10 +5,6 @@ export const LOGO_WORD =
 
 export const CONTACT_EMAIL = "admin@tsmnexus.com";
 
-/* Calendly — Founding Cohort / Full Diagnostic booking page */
-export const CALENDLY_URL =
-  "https://calendly.com/full-diagnostic-revenue-audit-tsmnexus/tsm-nexus-full-diagnostic";
-
 export const NAV = [
   { to: "/", label: "Home" },
   { to: "/method", label: "The Method" },

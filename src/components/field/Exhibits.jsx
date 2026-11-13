@@ -68,7 +68,7 @@ export function Exhibit({
 }
 
 /* ============================================================ image plate */
-export function PlateImage({ src, alt, label, caption, testid, className }) {
+export function PlateImage({ src, alt, label, caption, testid, className, width, height }) {
   return (
     <figure className={cn("my-9 md:my-12", className)} data-testid={testid}>
       <div className="flex items-end justify-between gap-4 mb-2.5">
@@ -81,7 +81,10 @@ export function PlateImage({ src, alt, label, caption, testid, className }) {
         <img
           src={src}
           alt={alt}
+          width={width}
+          height={height}
           loading="lazy"
+          decoding="async"
           className="block h-auto w-full rounded-[3px] object-cover"
         />
       </div>

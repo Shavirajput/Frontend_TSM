@@ -466,7 +466,7 @@ export default function Cohort() {
             </Rise>
             <Rise delay={240}>
               <div className="mt-9 flex flex-wrap items-center gap-3.5">
-                <CTA calendly testid="cohort-apply-cta">
+                <CTA fitCall testid="cohort-apply-cta">
                   Book your diagnostic call
                 </CTA>
                 <button
@@ -701,7 +701,7 @@ export default function Cohort() {
               </p>
 
               <div className="mt-7">
-                <CTA calendly testid="cohort-price-apply-cta">
+                <CTA fitCall testid="cohort-price-apply-cta">
                   Book your diagnostic call
                 </CTA>
               </div>
@@ -784,7 +784,7 @@ export default function Cohort() {
           </Rise>
           <Rise delay={230}>
             <div className="mt-9 flex flex-wrap justify-center gap-3.5">
-              <CTA calendly testid="cohort-final-apply-cta">
+              <CTA fitCall testid="cohort-final-apply-cta">
                 Book your diagnostic call
               </CTA>
               <CTA to="/contact" testid="cohort-final-contact-cta" variant="ghost">

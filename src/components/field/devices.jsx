@@ -4,10 +4,14 @@ import { cn } from "@/lib/utils";
 /* ------------------------------------------------------------------ reveal */
 export function useInView(options = {}) {
   const ref = useRef(null);
-  const [seen, setSeen] = useState(false);
+  const [seen, setSeen] = useState(true);
+  const optionsRef = useRef(options);
+  optionsRef.current = options;
+
   useEffect(() => {
     const el = ref.current;
-    if (!el || seen) return;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    setSeen(false);
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -15,11 +19,11 @@ export function useInView(options = {}) {
           io.disconnect();
         }
       },
-      { threshold: 0.2, rootMargin: "0px 0px -8% 0px", ...options }
+      { threshold: 0.2, rootMargin: "0px 0px -8% 0px", ...optionsRef.current }
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [seen, options]);
+  }, []);
   return [ref, seen];
 }
 
@@ -29,8 +33,8 @@ export function Reveal({ children, className, delay = 0, as: As = "div", style }
     <As
       ref={ref}
       className={cn(
-        "transition-[opacity,transform] duration-[600ms] ease-out",
-        seen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
+        "opacity-100 transition-[opacity,transform] duration-[600ms] ease-out",
+        seen ? "translate-y-0" : "translate-y-3",
         className
       )}
       style={{ ...style, transitionDelay: `${delay}ms` }}

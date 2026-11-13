@@ -39,10 +39,10 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
-            <div className="font-mono text-[10px] font-semibold tracking-[0.24em] uppercase text-white/40">
+          <nav aria-label="Footer">
+            <h2 className="font-mono text-[10px] font-semibold tracking-[0.24em] uppercase text-white/40">
               Navigate
-            </div>
+            </h2>
             <ul className="mt-4 space-y-2.5">
               {NAV.map((n) => (
                 <li key={n.to}>
@@ -55,19 +55,21 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           <div>
-            <div className="font-mono text-[10px] font-semibold tracking-[0.24em] uppercase text-white/40">
+            <h2 className="font-mono text-[10px] font-semibold tracking-[0.24em] uppercase text-white/40">
               Get in touch
-            </div>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              data-testid="footer-email"
-              className="mt-4 block font-mono text-[12px] tracking-[0.06em] text-[rgb(var(--brand-sky))] hover:underline break-all"
-            >
-              {CONTACT_EMAIL}
-            </a>
+            </h2>
+            <address className="mt-4 not-italic">
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                data-testid="footer-email"
+                className="block font-mono text-[12px] tracking-[0.06em] text-[rgb(var(--brand-sky))] hover:underline break-all"
+              >
+                {CONTACT_EMAIL}
+              </a>
+            </address>
             <p className="mt-3 font-mono text-[10px] tracking-[0.14em] uppercase leading-relaxed text-white/35">
               Every application is routed here
             </p>

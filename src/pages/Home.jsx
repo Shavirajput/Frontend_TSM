@@ -443,7 +443,10 @@ export default function Home() {
                 <img
                   src="/images/infographic-leaks.png"
                   alt="Six glowing layers showing where website revenue intent leaks: clarity, trust, conversion, performance, qualification, and business"
+                  width={1122}
+                  height={1402}
                   loading="lazy"
+                  decoding="async"
                   className="block h-auto w-full rounded-[10px]"
                 />
                 <figcaption className="mt-3 font-mono text-[9px] font-semibold tracking-[0.2em] uppercase text-white/40">
@@ -550,12 +553,13 @@ export default function Home() {
         <section className="home-process-section relative border-t border-white/[0.07] py-20 md:py-28">
           <div className="mx-auto max-w-[1280px] px-5 sm:px-8">
             <SectionHead eyebrow="The process" title="From application to diagnosis in seven steps." />
-            <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-12">
+            <ol className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-12">
               {PROCESS.map((p, i) => (
                 <Rise
                   key={p.n}
                   delay={i * 55}
                   className={`h-full ${i < 4 ? "lg:col-span-3" : "lg:col-span-4"}`}
+                  as="li"
                 >
                   <div className="glass tilt-card h-full rounded-[10px] p-5">
                     <div className="font-display font-semibold text-2xl brand-text">{p.n}</div>
@@ -566,7 +570,7 @@ export default function Home() {
                   </div>
                 </Rise>
               ))}
-            </div>
+            </ol>
           </div>
         </section>
 
